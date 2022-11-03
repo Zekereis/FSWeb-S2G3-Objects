@@ -2,8 +2,8 @@
 /*Bu görevleri yaparken çıktıların doğru çalıştığını kontrol etmeniz için console.log'u sıklıkla kullanmanızı tavsiye ediyoruz.*/
 
 ///////////////Menu Elemanları ///////////////////
-const cay = {isim: "Çay", fiyat: 4, kategori: "İçecekler"};
-const serpmeKahvalti = {isim: "Serpme Kahvaltı", fiyat: 16, kategori:"Kahvaltı"};
+const cay = { isim: "Çay", fiyat: 4, kategori: "İçecekler" };
+const serpmeKahvalti = { isim: "Serpme Kahvaltı", fiyat: 16, kategori: "Kahvaltı" };
 
 /* Görev 1a: Nesneler döndüren bir fonksiyon yazın
 	Aşağıdaki MenuElemaniOlustur fonksiyonunu, yukarıda gördüğünüz cay ve serpmeKahvalti (isim, fiyat, kategori) nesnelerini oluşturacak şekilde yazın. 
@@ -15,9 +15,17 @@ const serpmeKahvalti = {isim: "Serpme Kahvaltı", fiyat: 16, kategori:"Kahvaltı
 */
 
 
-function MenuElemaniOlustur(/*Kodlar buraya*/){
-	/*Kodlar buraya*/
+function MenuElemaniOlustur(isim, fiyat, kategori) {
+	const menuElemani = {
+		"isim": isim,
+		"fiyat": fiyat,
+		"kategori": kategori
+	}
+	return menuElemani;
+
 }
+
+console.log(MenuElemaniOlustur('Cheeseburger', 8, 'Burgerler'));
 
 
 
@@ -30,6 +38,11 @@ function MenuElemaniOlustur(/*Kodlar buraya*/){
 	
 	Örnek: MenuElemaniOlustur("Karışık Pizza",5,"Pizzalar") şunu döndürür: {isim:"Karışık Pizza",fiyat:5,kategori:"Pizzalar"}
 */
+
+
+console.log(MenuElemaniOlustur('BigMac', 9, 'Burgerler'));
+console.log(MenuElemaniOlustur('Lahmacun', 5, 'Geleneksel'));
+console.log(MenuElemaniOlustur('Kebap', 7, 'Geleneksel'));
 
 
 
@@ -47,30 +60,58 @@ function MenuElemaniOlustur(/*Kodlar buraya*/){
 
 
 const burger = {
-	isim: "Burger", 
-	fiyat: 18, 
-	kategori: "Öğle Yemeği", 
+	isim: "Burger",
+	fiyat: 18,
+	kategori: "Öğle Yemeği",
+	indirim: function (indirim) {
+		if (indirim == "öğretmen" || indirim == "öğrenci") {
+			return this.fiyat * 0.75;
+		} else {
+			return this.fiyat = this.fiyat * 0.9;
+		}
+	}
 
 }
+console.log(burger.indirim("öğrenci"));
+//console.log(burger.indirim("yazılımcı"));
 
 
 
 ///////////////Değerlendirmeler (MVP)///////////////////
 const degerlendirmeler = [
-    {isim: "Nalan", puan: 5, geribildirim:"Mükemmel atmosfer ve mükemmel vegan seçenekleri!"},
-    {isim: "Kuddusi", puan: 3, geribildirim:"Benim zevkime göre biraz fazla yenilikçi, burger iyi ama fiyatı yüksek"},
-    {isim: "Kamuran", puan: 4, geribildirim:"eğlenceli bilgiler ve havalı hisler"},
-    {isim: "Elif", puan: 4.5, geribildirim:"Evimden pek çıkmıyorum ama çıktığımda sadece buraya geliyorum. Şiddetle tavsiye ederim."},
-    {isim: "Pınar", puan: 3, geribildirim: "atıştırmalıklar harika ve gün içinde çalışmak için güzel bir cafe alanı."},
-    {isim: "Ahmet", puan: 2, geribildirim: "Bu mekan beni fazla etkilemedi. Menüde özel bir şey yok ve çok pahalı. Atmosferi de ben beğenmedim ama başkaları beğenebilir." },
-    {isim: "Latife", puan: 4, geribildirim: "Kesinlikle karaoke Cumalarını seviyorum! Yemek ve içki çeşitleri iyi."},
-    {isim: "Reyna", puan: 3.5, geribildirim: ""},
+	{ isim: "Nalan", puan: 5, geribildirim: "Mükemmel atmosfer ve mükemmel vegan seçenekleri!" },
+	{ isim: "Kuddusi", puan: 3, geribildirim: "Benim zevkime göre biraz fazla yenilikçi, burger iyi ama fiyatı yüksek" },
+	{ isim: "Kamuran", puan: 4, geribildirim: "eğlenceli bilgiler ve havalı hisler" },
+	{ isim: "Elif", puan: 4.5, geribildirim: "Evimden pek çıkmıyorum ama çıktığımda sadece buraya geliyorum. Şiddetle tavsiye ederim." },
+	{ isim: "Pınar", puan: 3, geribildirim: "atıştırmalıklar harika ve gün içinde çalışmak için güzel bir cafe alanı." },
+	{ isim: "Ahmet", puan: 2, geribildirim: "Bu mekan beni fazla etkilemedi. Menüde özel bir şey yok ve çok pahalı. Atmosferi de ben beğenmedim ama başkaları beğenebilir." },
+	{ isim: "Latife", puan: 4, geribildirim: "Kesinlikle karaoke Cumalarını seviyorum! Yemek ve içki çeşitleri iyi." },
+	{ isim: "Reyna", puan: 3.5, geribildirim: "" },
 ]
 
 /*  Görev 3 (ototest yok):  
 	Yukarıdaki degerlendirmeler dizisini(array) kullanarak:
 	1. Sadece Ahmet'in geribildirimini konsolda görüntüleyin - fonksiyona gerek yok
 */
+
+for (let i = 0; i < degerlendirmeler.length; i++) {
+	if (degerlendirmeler[i].isim == "Ahmet") {
+		console.log(degerlendirmeler[i].geribildirim);
+	}
+}
+
+degerlendirmeler.forEach(
+	function (degerlendirme) {
+		if (degerlendirme.isim == "Ahmet") {
+			console.log(degerlendirme.geribildirim);
+		}
+	}
+)
+
+let filterAhmet = degerlendirmeler.filter(geribildirim => geribildirim.isim == "Ahmet");
+	
+console.log(filterAhmet[0].geribildirim);
+
 
 
 
@@ -79,6 +120,15 @@ const degerlendirmeler = [
 	1. Bu geribildirimi Reyna'nın değerlendirmesine ekleyin - "bu mekan bir harika dostum, yine de garsonun gülümsememesinden puan kırdım"
 	2. degerlendirmeler dizisini konsolda görüntüleyerek çalışmanızı kontrol edin
 */
+
+	degerlendirmeler.filter(degis => {
+		if(degis.isim === "Reyna"){
+			degis.geribildirim = " bu mekan bir harika dostum, yine de garsonun gülümsememesinden puan kırdım";
+			
+		}
+	}
+
+	)
 
 
 
@@ -94,16 +144,22 @@ const degerlendirmeler = [
 */
 
 
-function DegerledirmeEkle(/*Kodlar buraya */){
-	/*Kodlar buraya */
-	
+function DegerledirmeEkle(degerlendirmelerArrayi,gelenIsim,gelenPuan,gelenGeriBildirim) {
+	let yeniDegerlendirme = {
+		isim: gelenIsim,
+		puan: gelenPuan,
+		geribildirim: gelenGeriBildirim
+	}
+	degerlendirmelerArrayi.push(yeniDegerlendirme);
+	return degerlendirmelerArrayi;
 }
+let guncelDegerlendirmeler = DegerledirmeEkle(degerlendirmeler,"Hurşut",2,"Boktan yemekler!");
+console.log(guncelDegerlendirmeler[guncelDegerlendirmeler.length-1]);
 
 
 
 /*  Görev 6: 
 	Dizideki değerlendirmelerin anahtarına(key,index) bağlı olarak bir değerlendirme döndüren bir fonksiyon yazın
-	
 	Aşağıdaki AnahtardanDegerlendirmeAl fonksiyonu kullanarak aşağıdakileri uygulayın:
 	1. Argüman olarak bir diziyi ilk parametresi olarak alacak
 	2. Dizinin kullanılmak istenen anahtarını ikinci parametre olarak alacak
@@ -112,10 +168,13 @@ function DegerledirmeEkle(/*Kodlar buraya */){
 */
 
 
-function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
+function AnahtardanDegerlendirmeAl(key,i) {
+	var cumle = `${key[i].isim} isimli kişi ${key[i].puan} puan verdi ve şunları yazdı: ${key[i].geribildirim}`
+	return cumle;
 
 }
+
+console.log(AnahtardanDegerlendirmeAl(degerlendirmeler,0));
 
 
 
@@ -132,9 +191,13 @@ function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
 */
 
 
-function SonDegerlendirmeyiAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
-} 
+function SonDegerlendirmeyiAl(key) {
+	var cumle = `${key[key.length-1].isim} isimli kişi ${key[key.length-1].puan} puan verdi ve şunları yazdı: ${key[key.length-1].geribildirim}`
+	return cumle;
+
+}
+
+console.log(SonDegerlendirmeyiAl(degerlendirmeler))
 
 
 
@@ -148,14 +211,14 @@ function SonDegerlendirmeyiAl(/*Kodlar buraya*/) {
 	
 	Örnek: PuanaGoreDegerlendirmeAl(degerlendirmeler, 4) 4 ile 4.9 puan aralığındaki tüm değerlendirmeleri döndürecek :
 	[
-    {isim: "Kamuran", puan: 4, geribildirim:"eğlenceli bilgiler ve havalı hisler},
-    {isim: "Elif", puan: 4.5, geribildirim:"Evimden pek çıkmıyorum ama çıktığımda sadece buraya geliyorum. Şiddetle tavsiye ederim."},
-    {isim:"Latife", puan: 4, geribildirim: "Kesinlikle karaoke Cumalarını seviyorum! Yemek ve içki çeşitleri iyi."}
+	{isim: "Kamuran", puan: 4, geribildirim:"eğlenceli bilgiler ve havalı hisler},
+	{isim: "Elif", puan: 4.5, geribildirim:"Evimden pek çıkmıyorum ama çıktığımda sadece buraya geliyorum. Şiddetle tavsiye ederim."},
+	{isim:"Latife", puan: 4, geribildirim: "Kesinlikle karaoke Cumalarını seviyorum! Yemek ve içki çeşitleri iyi."}
 	]
 */
 
 function PuanaGoreDegerlendirmeAl(/* Kodlar buraya */) {
-    /* Kodlar buraya */
+	/* Kodlar buraya */
 }
 
 
@@ -167,7 +230,7 @@ function PuanaGoreDegerlendirmeAl(/* Kodlar buraya */) {
 */
 
 function UzunDegerlendirmeleriAl(/* Kodlar buraya */) {
-    /* Kodlar buraya */
+	/* Kodlar buraya */
 }
 
 
@@ -190,13 +253,13 @@ function UzunDegerlendirmeleriAl(/* Kodlar buraya */) {
 
 
 function arabaYapici(/* Kodlar buraya */) {
-    /* Kodlar buraya */
-    
+	/* Kodlar buraya */
+
 }
 
 
 /*  Buradan aşağıdaki kodları değiştirmeyin lütfen */
-function sa(){
+function sa() {
 	console.log('Kodlar çalışıyor');
 	return 'as';
 }
